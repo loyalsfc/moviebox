@@ -11,10 +11,12 @@ module.exports = {
         'poster': 'url(/poster.png)'
       },
       fontFamily:{
-        'dm-sans': ['var(--font-dm-sans)']
+        'dm-sans': ['var(--font-dm-sans)'],
+        'poppins': ['var(--font-poppins)']
       },
       colors:{
-        'primary': '#BE123C'
+        'primary': '#BE123C',
+        'gray-333': "#333333"
       }
     },
   },

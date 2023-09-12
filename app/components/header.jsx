@@ -2,20 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Bars, Search } from './icons/icons'
+import Logo from './logo'
 
 function Header() {
     return (
         <header className='py-[22px]'>
             <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-                <div className='flex items-center gap-6'>
-                    <Image
-                        src="/logo.png"
-                        height={50}
-                        width={50}
-                        alt='Logo'
-                    />
-                    <span className='text-2xl text-white font-bold font-dm-sans'>MovieBox</span>
-                </div>
+                <Logo color="text-white" />
                 <div className='flex items-center border border-white rounded w-1/3 overflow-hidden px-2'>
                     <input 
                         type="text" 

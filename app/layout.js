@@ -1,7 +1,11 @@
 import './globals.css'
-import { Inter, DM_Sans } from 'next/font/google'
+import { Poppins, DM_Sans } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const poppins = Poppins({ 
+  subsets: ['latin'], 
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins'
+})
 const dmSans = DM_Sans({
   weight: "400", 
   subsets: ['latin'],
@@ -15,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${dmSans.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${poppins.variable}`}>
       <body className={dmSans.className}>{children}</body>
     </html>
   )
