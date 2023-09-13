@@ -1,43 +1,29 @@
 'use client'
 
-import MovieCard from '@/app/components/movieCard';
-import SearchBox from '@/app/components/search';
-import { fetchData } from '@/utils/util';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react'
-import {
-    useQuery,
-    useMutation,
-    useQueryClient,
-} from 'react-query'
+import { useQuery } from 'react-query'
+import { fetchData } from '../../../utils/util';
+import SearchBox from '../../components/search'
+import MovieCard from '../../components/movieCard'
+import ErrorPage from '../../components/error';
 
 function Page() {
-    const queryClient = useQueryClient()
     const searchParams = useSearchParams();
     const search = searchParams.get('search');
-    const router = useRouter();
     const fetchMovieDetail = async() => {
         const movieDetail = await fetchData(`https://api.themoviedb.org/3/search/movie?query=${search}&language=en-US&page=1`);
         return movieDetail;
     }
-    const {isLoading, data} = useQuery('search', fetchMovieDetail)
+    const {isLoading, data, refetch} = useQuery('search', fetchMovieDetail)
     
-    
-    const mutation = useMutation(fetchMovieDetail, {
-        onSuccess: () => {
-          // Invalidate and refetch
-          queryClient.invalidateQueries('search')
-        },
-    })
-
     useEffect(()=>{
-        mutation.mutate()
-        console.log(search)
+        refetch();
     },[search])
 
     if(isLoading){
         return(
-            <div className='grid grid-cols-4 gap-4'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'>
                 {new Array(20).fill(null).map((_, index) => {
                     return(
                         <div data-testid="movie-card ">
@@ -55,24 +41,32 @@ function Page() {
     }
 
     return (
-        <div>
-            <div className='flex justify-center pb-10'>
-                <SearchBox backgroundColor={true}/>
-            </div>
-            <ul className='grid grid-cols-4 gap-8'>
-                {data?.results.map((item) => {
-                    return(
-                        <MovieCard
-                            key={item.id}
-                            id={item.id}
-                            img={item.poster_path}
-                            title={item.title}
-                            year={item.release_date}
-                        />
-                    )
-                })}
-            </ul>
-        </div>
+        <>{data.success !== false ? (
+            <div>
+                <div className='flex justify-center pb-10'>
+                    <SearchBox backgroundColor={true}/>
+                </div>
+                {data?.results.length ? <ul className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8'>
+                    {data?.results.map((item) => {
+                        return(
+                            <MovieCard
+                                key={item.id}
+                                id={item.id}
+                                img={item.poster_path}
+                                title={item.title}
+                                year={item.release_date}
+                            />
+                        )
+                    })}
+                </ul>:(
+                    <div className='h-full w-full flex items-center justify-center pt-20'>
+                        <span className=''>No Result found for "<span className='font-semibold text-center'>{search}</span>"</span>
+                    </div>
+                )}
+            </div>):(
+                <ErrorPage />
+            )}
+        </>
     )
 }
 

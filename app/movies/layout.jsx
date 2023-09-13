@@ -1,6 +1,4 @@
 import React from 'react'
-import Logo from '@/app/components/logo';
-import NavMenu from '@/app/components/nav-menu';
 import SideMenu from '../components/side-menu';
 
 function Layout({children}) {

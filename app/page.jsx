@@ -3,7 +3,8 @@ import Header from './components/header'
 import Image from 'next/image'
 import { Facebook, Instagram, Play, Twitter, Youtube } from './components/icons/icons'
 import MovieCard from './components/movieCard'
-import { fetchData } from '@/utils/util'
+import { fetchData } from '../utils/util'
+import ErrorPage from './components/error'
 
 const getMovie = async() => {
     const data = await fetchData('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1');
@@ -61,25 +62,28 @@ async function Page() {
                 </div>
             </div>
             <main className='pt-[70px] pb-28'>
-                <div className="max-w-6xl mx-auto px-4">
-                    <h2 className='font-bold mb-11 text-black text-4xl leading-normal'>
-                        <span>Top 10 movies</span>
-                    </h2>
-                    <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-10 lg:gap-20'>
-                        {moviesList?.results.map((item, index) => {
-                            if(index >= 10) return;
-                            return(
-                                <MovieCard
-                                    key={item.id}
-                                    id={item.id}
-                                    img={item.poster_path}
-                                    title={item.title}
-                                    year={item.release_date}
-                                />
-                            )
-                        })}
-                    </ul>
-                </div>
+                {moviesList?.success !== false ? (
+                    <div className="max-w-6xl mx-auto px-4">
+                        <h2 className='font-bold mb-11 text-black text-4xl leading-normal'>
+                            <span>Top 10 movies</span>
+                        </h2>
+                        <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-10 lg:gap-20'>
+                            {moviesList?.results.map((item, index) => {
+                                if(index >= 10) return;
+                                return(
+                                    <MovieCard
+                                        key={item.id}
+                                        id={item.id}
+                                        img={item.poster_path}
+                                        title={item.title}
+                                        year={item.release_date}
+                                    />
+                                )
+                            })}
+                        </ul>
+                    </div>):(
+                        <ErrorPage />
+                    )}
             </main>
 
             <footer className='font-bold px-4 pb-8'>

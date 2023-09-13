@@ -14,7 +14,7 @@ function MovieCard({id, img, title, year}) {
             </button>
             <Link className='flex flex-col h-full' href={`/movies/${id}`}>
                 <Image
-                    src={`https://image.tmdb.org/t/p/w500${img}`}
+                    src={img ? `https://image.tmdb.org/t/p/w500${img}` : "/default_poster.jpg"}
                     width={250}
                     height={370}
                     alt='Banner Image'

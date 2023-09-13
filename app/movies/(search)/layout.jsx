@@ -9,7 +9,7 @@ function Layout({children}) {
     const queryClient = new QueryClient()
     return (
         <QueryClientProvider client={queryClient}>
-            <div>{children}</div>
+            <div className='md:h-screen h-4/5 w-full'>{children}</div>
         </QueryClientProvider>
     )
 }
