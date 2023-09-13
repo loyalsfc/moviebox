@@ -9,7 +9,6 @@ const fetchMovieDetail = async(movie_id) => {
 
 async function Page({params}) {
     const data = await fetchMovieDetail(params.id);
-    console.log(data);
 
     function dateToUTC(date){
         const dateArray = date.split("-").map(Number);
@@ -37,15 +36,15 @@ async function Page({params}) {
                     </div>
                 </div>
                 <article className='pt-8'>
-                    <div className='flex items-center gap-4'>
-                        <h2 className='flex items-center gap-2 text-xl font-semibold text-[#404040] '>
-                            <span data-testid ="movie-title">{data?.title}</span>
+                    <div className='flex items-center gap-2 flex-nowrap overflow-scroll'>
+                        <h2 className='flex items-center gap-2 text-xl font-semibold text-[#404040] flex-nowrap'>
+                            <span data-testid ="movie-title" className=' whitespace-nowrap'>{data?.title}</span>
                             <span className='separator'/>
                             <span data-testid="movie-release-date">{dateToUTC(data?.release_date)}</span>
                             <span className='separator'/>
-                            <span>PG-13</span>
+                            <span className='whitespace-nowrap'>PG-13</span>
                             <span className='separator'/>
-                            <span data-testid="movie-runtime">{data?.runtime} min</span>
+                            <span data-testid="movie-runtime" className='whitespace-nowrap'>{data?.runtime} min</span>
                         </h2>
                         {data?.genres.map(item => {
                             return(
@@ -108,7 +107,7 @@ async function Page({params}) {
                                     alt='Image'
                                     className='-z-10'
                                 />
-                                <p className='text-[#E8E8E8] px-4 py-2 mt-auto text-sm rounded-[10px] bg-[#121212]/50 flex items-center gap-4 justify-center w-full z-10'>
+                                <p className='text-[#E8E8E8] px-4 py-2 mt-auto text-xs lg:text-sm rounded-[10px] bg-[#121212]/50 flex items-center gap-4 justify-center w-full z-10'>
                                     <Image
                                         src="/icons/list-2.png"
                                         height={20}

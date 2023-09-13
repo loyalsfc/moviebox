@@ -20,7 +20,7 @@ function SearchBox({backgroundColor}) {
     return (
         <form 
             onSubmit={handleSubmit} 
-            className='flex items-center border border-white rounded w-1/3 overflow-hidden px-2'
+            className='flex items-center border border-white rounded w-full overflow-hidden px-2'
             style={{backgroundColor: backgroundColor ? "rgba(190, 18, 60, 0.5)" : "transparent"}}
         >
             <input 

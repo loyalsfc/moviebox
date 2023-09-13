@@ -15,10 +15,10 @@ async function Page() {
     
     return (
         <div className=''>
-            <div className='bg-poster bg-cover bg-no-repeat bg-center'>
+            <div className='bg-poster relative bg-cover bg-no-repeat bg-center'>
                 <div className="max-w-6xl mx-auto px-4">
                     <Header />
-                    <div className='pt-20 [100px] pb-28 flex items-center justify-between'>
+                    <div className='pt-20 [100px] pb-28 flex flex-col sm:flex-row items-center justify-between'>
                         <article className='max-w-[404px] flex flex-col gap-4 font-dm-sans text-white'>
                             <h1 className='font-bold text-5xl leading-[116%]'>John Wick 3 : Parabellum</h1>
                             <div className='flex gap-8 items-center'>
@@ -47,11 +47,11 @@ async function Page() {
                                 <span>Watch Trailer</span>
                             </button>
                         </article>
-                        <div className='w-fit'>
-                            <ol className='flex flex-col gap-2.5 text-sm text-gray-400 font-bold leading-[14px]'>
+                        <div className='w-fit absolute sm:relative bottom-0 left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0'>
+                            <ol className='flex items-center sm:flex-col gap-2.5 text-sm text-gray-400 font-bold leading-[14px]'>
                                 <li>1</li>
                                 <li>2</li>
-                                <li className='relative text-base text-white before:content-[""] before:w-5 before:h-[3px] before:rounded-md before:bg-white before:block before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-6'>3</li>
+                                <li className='relative text-base text-white before:hidden before:content-[""] before:w-5 before:h-[3px] before:rounded-md before:bg-white sm:before:block before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-6'>3</li>
                                 <li>4</li>
                                 <li>5</li>
                             </ol>
@@ -65,7 +65,7 @@ async function Page() {
                     <h2 className='font-bold mb-11 text-black text-4xl leading-normal'>
                         <span>Top 10 movies</span>
                     </h2>
-                    <ul className='grid grid-cols-4 gap-20'>
+                    <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-10 lg:gap-20'>
                         {moviesList?.results.map((item, index) => {
                             if(index >= 10) return;
                             return(
@@ -89,7 +89,7 @@ async function Page() {
                     <Twitter />
                     <Youtube />
                 </div>
-                <ul className='flex items-center justify-center gap-12 py-9 text-gray-900 text-lg'>
+                <ul className='flex  items-center justify-center gap-3 sm:gap-12 py-9 text-gray-900 text-sm sm:text-lg'>
                     <li>Conditions of Use</li>
                     <li>Privacy & Policy</li>
                     <li>Press Room</li>
