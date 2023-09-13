@@ -16,7 +16,8 @@ module.exports = {
       },
       colors:{
         'primary': '#BE123C',
-        'gray-333': "#333333"
+        'gray-333': "#333333",
+        "gray-666": "#666666"
       }
     },
   },

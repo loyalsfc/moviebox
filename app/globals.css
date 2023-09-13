@@ -14,3 +14,15 @@
   -ms-overflow-style: none;
   scrollbar-width: none; 
 }
+
+@layer utilities {
+  .separator{
+    @apply bg-[#404040] h-2 w-2 rounded-full
+  }
+  .movie-button{
+    @apply font-medium leading-normal rounded-[10px] flex items-center justify-center gap-4 w-full px-4 py-3
+  }
+  .movie-overview{
+    @apply py-4 border-b border-b-[#E8E8E8]/20
+  }
+}

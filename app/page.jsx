@@ -12,7 +12,7 @@ const getMovie = async() => {
 
 async function Page() {
     const moviesList = await getMovie();
-    console.log(moviesList.results)
+    
     return (
         <div className=''>
             <div className='bg-poster bg-cover bg-no-repeat bg-center'>
@@ -72,7 +72,7 @@ async function Page() {
                                 <MovieCard
                                     key={item.id}
                                     id={item.id}
-                                    img={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                                    img={item.poster_path}
                                     title={item.title}
                                     year={item.release_date}
                                 />
