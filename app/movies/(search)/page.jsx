@@ -26,7 +26,7 @@ function Page() {
             <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'>
                 {new Array(20).fill(null).map((_, index) => {
                     return(
-                        <div data-testid="movie-card ">
+                        <div data-testid="movie-card " key={index}>
                             <div className='animate-pulse'>
                                 <div className='aspect-[1/1.48]  bg-slate-700'/>
                                 <div className='flex flex-col gap-3 pt-3'>
@@ -60,7 +60,7 @@ function Page() {
                     })}
                 </ul>:(
                     <div className='h-full w-full flex items-center justify-center pt-20'>
-                        <span className=''>No Result found for "<span className='font-semibold text-center'>{search}</span>"</span>
+                        <span className=''>No Result found for &quot;<span className='font-semibold text-center'>{search}</span>&quot;</span>
                     </div>
                 )}
             </div>):(
