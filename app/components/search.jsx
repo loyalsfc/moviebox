@@ -7,7 +7,7 @@ import { Search } from './icons/icons';
 function SearchBox({backgroundColor}) {
     const router = useRouter();
     const searchParams = useSearchParams()
-    const [searchValue, setSearchValue] = useState(searchParams.get('search'));
+    const [searchValue, setSearchValue] = useState(searchParams.get('search') ?? "");
 
     const handleSubmit = (e) => {
         e.preventDefault();

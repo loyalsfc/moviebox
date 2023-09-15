@@ -43,7 +43,7 @@ async function Page() {
                                 </div>
                             </div>
                             <p className='font-bold text-sm'>John Wick is on the run after killing a member of the international assassins&apos; guild, and with a $14 million price tag on his head, he is the target of hit men and women everywhere.</p>
-                            <button className='w-fit bg-rose-700 items-center flex gap-2 py-1.5 px-4 rounded-md font-bold text-sm'>
+                            <button className='w-fit hover:bg-transparent hover:text-rose-700 bg-rose-700 border border-rose-700 items-center flex gap-2 py-1.5 px-4 rounded-md font-bold text-sm'>
                                 <Play />
                                 <span>Watch Trailer</span>
                             </button>

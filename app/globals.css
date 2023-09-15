@@ -20,7 +20,7 @@
     @apply bg-[#404040] h-2 w-2 rounded-full shrink-0
   }
   .movie-button{
-    @apply font-medium leading-normal rounded-[10px] flex items-center justify-center gap-4 w-full px-4 py-3
+    @apply font-medium leading-normal rounded-[10px] flex items-center justify-center gap-4 w-full px-4 py-3 hover:scale-110 transition-all
   }
   .movie-overview{
     @apply py-4 border-b border-b-[#E8E8E8]/20

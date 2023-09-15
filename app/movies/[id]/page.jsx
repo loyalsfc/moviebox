@@ -4,17 +4,33 @@ import { fetchData } from '../../../utils/util';
 import ErrorPage from '../../components/error'
 
 const fetchMovieDetail = async(movie_id) => {
-    const movieDetail = fetchData(`https://api.themoviedb.org/3/movie/${movie_id}`);
+    const movieDetail = await fetchData(`https://api.themoviedb.org/3/movie/${movie_id}`);
     return movieDetail;
+}
+
+export async function generateMetadata({ params }) {
+    // read route params
+    const id = params.id
+   
+    // fetch data
+    const movieDetail = await fetchData(`https://api.themoviedb.org/3/movie/${id}`);
+   
+    return {
+        title: movieDetail?.title,
+    }
 }
 
 async function Page({params}) {
     const data = await fetchMovieDetail(params.id);
     
     function dateToUTC(date){
-        const dateArray = date?.split("-").map(Number);
-        return Date.UTC(dateArray[0], dateArray[1] - 1, dateArray[2])
+        if(date){
+            const dateArray = date?.split("-").map(Number);
+            return Date.UTC(dateArray[0], dateArray[1] - 1, dateArray[2])
+        }
+        return 0;
     }
+
 
     return (
         <>{data.success !== false ? (
